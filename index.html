@@ -1,0 +1,157 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Ordering Website</title>
+   
+</head>
+<body>
+  <header>
+    <h1>FoodieExpress</h1>
+    <nav>
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#cart">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="menu" class="menu-section">
+    <h2>Our Menu</h2>
+    <div class="menu-items" id="menuItems">
+     
+    </div>
+  </section>
+
+  <section id="cart" class="cart-section">
+    <h2>Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <p>Total: ₹<span id="totalPrice">0</span></p>
+  </section>
+
+  <!-- now CSS will work -->
+   <style>
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fefefe;
+  color: #333;
+}
+
+header {
+  background: #e74c3c;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu-section, .cart-section {
+  padding: 20px;
+}
+
+.menu-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+button {
+  background: #e67e22;
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#cartItems {
+  list-style: none;
+  padding: 0;
+}
+
+@media (max-width: 600px) {
+  .menu-items {
+    grid-template-columns: 1fr;
+  }
+}
+   </style>
+<!-- now javascript will work -->
+ <script>
+  const menuData = [
+  { name: "Pani Puri", price: 40, img: "https://i.imgur.com/4jZ6fJj.jpg" },
+  { name: "Butter Chicken", price: 180, img: "https://i.imgur.com/hAz1lWo.jpg" },
+  { name: "Veg Burger", price: 90, img: "https://i.imgur.com/6U9K8CQ.jpg" },
+  { name: "Pizza", price: 150, img: "https://i.imgur.com/N0LdJ0N.jpg" },
+  { name: "Fine Dining Platter", price: 350, img: "https://i.imgur.com/IeKCrCm.jpg" },
+];
+
+const menuItems = document.getElementById('menuItems');
+const cartItems = document.getElementById('cartItems');
+const totalPrice = document.getElementById('totalPrice');
+
+let cart = [];
+
+menuData.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <img src="${item.img}" alt="${item.name}" />
+    <h3>${item.name}</h3>
+    <p>₹${item.price}</p>
+    <button onclick='addToCart("${item.name}", ${item.price})'>Add to Cart</button>
+  `;
+  menuItems.appendChild(card);
+});
+
+function addToCart(name, price) {
+  cart.push({ name, price });
+  updateCart();
+}
+
+function updateCart() {
+  cartItems.innerHTML = "";
+  let total = 0;
+  cart.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = '${item.name} - ₹{item.price}';
+    cartItems.appendChild(li);
+    total += item.price;
+  });
+  totalPrice.textContent = total;
+}
+ </script>
+</body>
+</html>
