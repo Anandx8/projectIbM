@@ -116,6 +116,11 @@ button {
   { name: "Veg Burger", price: 90, img: "https://i.imgur.com/6U9K8CQ.jpg" },
   { name: "Pizza", price: 150, img: "https://i.imgur.com/N0LdJ0N.jpg" },
   { name: "Fine Dining Platter", price: 350, img: "https://i.imgur.com/IeKCrCm.jpg" },
+  { name: "Pani Puri", price: 40, img: "https://up.yimg.com/ib/th/id/OIP.y4c0POc8M2nv2ZKP_fuDogHaFC?pid=Api&rs=1&c=1&qlt=95&w=161&h=109" },
+  { name: "Butter Chicken", price: 180, img: "https://up.yimg.com/ib/th/id/OIP.XcRw4bSqHENWNUCSAwEPKgHaLH?pid=Api&rs=1&c=1&qlt=95&w=73&h=110" },
+  { name: "Veg Burger", price: 90, img: "https://tse3.mm.bing.net/th/id/OIP.JnUimTk9WEG9Kz7RWBgmhwHaEu?pid=Api&P=0&h=180" },
+  { name: "Pizza", price: 150, img: "https://tse1.mm.bing.net/th/id/OIP.2dhr5Ln6cMHIu9SmwE_uBgHaE7?pid=Api&P=0&h=180" },
+  { name: "Fine Dining Platter", price: 350, img: "https://tse4.mm.bing.net/th/id/OIP.s8InAQc6o9Ey0jYppV1gzAHaE8?pid=Api&P=0&h=180" },
 ];
 
 const menuItems = document.getElementById('menuItems');
@@ -146,6 +151,7 @@ function updateCart() {
   let total = 0;
   cart.forEach(item => {
     const li = document.createElement('li');
+    
     cartItems.appendChild(li);
     total += item.price;
   });
